@@ -12,6 +12,7 @@ import commonStyles from '../styles/common.module.scss';
 import styles from './home.module.scss';
 import Head from 'next/head';
 import Link from 'next/link';
+import { useState } from 'react';
 
 interface Post {
   uid?: string;
@@ -32,8 +33,38 @@ interface HomeProps {
   postsPagination: PostPagination;
 }
 
-export default function Home({ next_page, results }: PostPagination) {
-  // TODO
+export default function Home({ postsPagination }: HomeProps) {
+  
+  const [posts, setPosts] = useState<Post[] | null>(postsPagination.results);
+  const [nextPage, setNextPage] = useState<string | null>(postsPagination.next_page);
+
+  const handleFetchPosts = () => {
+    fetch(nextPage)
+    // .then(response => response.blob())
+    // .then(async myBlob => await myBlob.text())
+    // .then(newPosts => JSON.parse(newPosts))
+    .then(async response => await response.json())
+    .then(item => {
+      const newPosts = item.results.map(post => {
+        return {
+          uid: post.uid,
+          first_publication_date: post.first_publication_date,
+          data: 
+            {
+              title: post.data.title,
+              subtitle: post.data.subtitle,
+              author: post.data.author,
+            },
+          }
+      });
+
+      setPosts([
+        ...posts, 
+        ...newPosts,
+      ]);
+      setNextPage(item.next_page);
+    })
+  }
 
   return (
     <>
@@ -44,7 +75,7 @@ export default function Home({ next_page, results }: PostPagination) {
       <main className={styles.container}>
 
         <div className={styles.posts}>
-          {results.map(post => (
+          {posts.map(post => (
             <Link href={`/post/${post.uid}`} key={post.uid}>
               <a>
                 <h1>{post.data.title}</h1>
@@ -52,7 +83,13 @@ export default function Home({ next_page, results }: PostPagination) {
                 <div className={styles.postDetail}>
                   <time>
                     <FiCalendar size={20}/>
-                    {post.first_publication_date}
+                    {/* {post.first_publication_date} */}
+                    {format(new Date(post.first_publication_date),
+                      'dd MMM yyyy', 
+                      {
+                        locale: ptBR,
+                      }
+                    )}
                   </time>
                   <span>
                     <FiUser size={20} />
@@ -64,10 +101,12 @@ export default function Home({ next_page, results }: PostPagination) {
           ))}
         </div>
         
-        {next_page && (
-          <p>Carregar mais...</p>
+        {nextPage && (
+          <div className={styles.loadPosts}>
+            <button type="button" onClick={() => handleFetchPosts()} >Carregar mais posts</button>
+          </div>
         )}
-
+        
       </main>
     </>
   )
@@ -95,22 +134,17 @@ export const getStaticProps: GetStaticProps = async () => {
         subtitle: post.data.subtitle,
         author: post.data.author,
       },
-      first_publication_date: format(
-        new Date(post.first_publication_date),
-        'dd LLL yyyy', 
-        {
-          locale: ptBR,
-        }
-      )
-      ,
+      first_publication_date: post.first_publication_date
     }
-
   })
 
-  const next_page = postsResponse.next_page || '';
-
   return {
-    props: { next_page, results }
+    props: { 
+      postsPagination: {
+        next_page: postsResponse.next_page, 
+        results
+      }
+    }
   }
 
 };

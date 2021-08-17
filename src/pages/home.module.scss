@@ -1,7 +1,7 @@
 // TODO
 .container {
     max-width: 1120px;
-    margin: 0 auto;
+    margin: 0 auto 5rem;
     padding: 0 2rem;
 }
 
@@ -57,12 +57,26 @@
             }
         }
 
-        transition: transform 0.2s;
+        transition: all 0.2s;
         &:hover {
             transform:scale(1.01,1.01);
         }
     }
-
-    
 }
 
+.loadPosts {
+    max-width: 720px;
+    margin: 4.125rem auto 0;
+
+    button {
+        font: 600 1.125rem "Inter", sans-seriff;
+        background: none;
+        color: var(--highlight);
+        border: 0;
+
+        transition: all 0.2s;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}

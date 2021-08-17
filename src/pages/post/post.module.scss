@@ -1,1 +1,129 @@
-// TODO
+.container {
+    max-width: 1120px;
+    margin: 5rem auto 5rem;
+    padding: 0 2rem;
+
+}
+
+.postHeader {
+    margin: 1rem 0 2rem;
+    max-width: 720px;
+    margin: 0 auto 2.5rem;
+
+    img {
+        display: block;
+        margin: 0 auto;
+        width: 100%;
+        max-height: 20rem;
+    }
+
+    h1 {
+        margin-top: 4.582rem;
+    }
+
+    .postDetails {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-top: 1.5625rem;
+
+        time, span {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+
+            font-size: 0.875rem;
+            line-height: 1rem;
+            color: var(--info);
+
+            & + span {
+                margin-left: 2rem;
+            }
+
+            svg {
+                margin-right: 0.6562rem;
+            }
+        }
+    }
+    
+}
+
+.postContent {
+    max-width: 720px;
+    margin: 0 auto;
+
+    .subtitle {
+        margin-bottom: 2rem;
+    }
+
+    .scope{
+        color: var(--body);
+        margin-bottom: 3rem;
+
+        h1 {
+            font-size: 1.75rem;
+            color: var(--heading);
+            line-height: 2.125rem;
+        }
+
+        p, ul {
+            margin: 1.5rem 0;
+        }
+    
+        p {
+            font-size: 1.125rem;
+            color: var(--body);
+            line-height: 1.375rem;
+            margin-top: 1rem;
+        }
+
+        ul {
+            padding-left: 1.5rem;
+
+            li {
+                margin: 0.5rem 0;
+            }
+        }
+
+        a {
+            text-decoration: underline;
+        }
+
+        pre {
+            display: block;
+            font-size: 1rem;
+            padding: 1rem;
+            width: 100%;
+            background: var(--gray-700);
+            border-radius: 1rem;
+            text-align: left;
+            word-break: normal;
+            word-wrap: normal;
+            margin-bottom: 1rem;
+            overflow: auto;
+
+            scrollbar-color: #bd93f9;
+        }
+
+        pre::-webkit-scrollbar {
+            width: 1rem;
+        }
+
+        pre::-webkit-scrollbar-track {
+            background-color: var(--gray-300);
+            border-radius: 0.5rem;
+        }
+          
+        pre::-webkit-scrollbar-thumb {
+            background-color: var(--cyan-600);
+            border-radius: 0.5rem;
+        }
+
+        // CODE TO SHADE TEXT AREA
+        // &.previewContent {
+        //     background: linear-gradient(var(--gray-100), transparent);
+        //     background-clip: text;
+        //     -webkit-text-fill-color: transparent;
+        // }
+    }
+}

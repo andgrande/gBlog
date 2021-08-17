@@ -1,8 +1,33 @@
-.headerContainer {
-    height: 4rem;
-    padding-top: 79.55px;
-    margin: 0 auto;
-    display: flex;
+// .headerContainer {
+//     height: 5rem;
+//     // padding-top: 79.55px;
+//     padding-top: 2rem;
+//     margin: 0 auto;
 
-    max-width: 720px;
+//     max-width: 720px;
+
+//     img {
+//         width: 14.9375rem;
+//         height: 1.6875rem;
+//     }  
+// }
+
+.headerContainer {
+    height: 5rem;
+    background-color: var(--background);
+    position: fixed;
+    width: 100%; 
+    top: 0;
+    margin: 0 auto;    
+
+    div {
+        padding-top: 2.5rem;
+        margin: 0 auto;
+        max-width: 720px;
+        width: 720px; 
+
+        img {
+            transform: translateY(-50%);
+        }
+    }
 }
