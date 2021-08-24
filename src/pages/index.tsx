@@ -1,4 +1,4 @@
-import { GetStaticProps } from 'next';
+import { GetServerSideProps, GetStaticProps } from 'next';
 
 import { getPrismicClient } from '../services/prismic';
 import Prismic from '@prismicio/client';
@@ -13,6 +13,7 @@ import styles from './home.module.scss';
 import Head from 'next/head';
 import Link from 'next/link';
 import { useState } from 'react';
+import ExitPreviewButton from '../components/ExitPreviewButton';
 
 interface Post {
   uid?: string;
@@ -31,9 +32,10 @@ interface PostPagination {
 
 interface HomeProps {
   postsPagination: PostPagination;
+  preview: boolean;
 }
 
-export default function Home({ postsPagination }: HomeProps) {
+export default function Home({ postsPagination, preview }: HomeProps) {
   
   const [posts, setPosts] = useState<Post[] | null>(postsPagination.results);
   const [nextPage, setNextPage] = useState<string | null>(postsPagination.next_page);
@@ -106,13 +108,20 @@ export default function Home({ postsPagination }: HomeProps) {
             <button type="button" onClick={() => handleFetchPosts()} >Carregar mais posts</button>
           </div>
         )}
+
+        {preview && (
+          <ExitPreviewButton />
+        )}
         
       </main>
     </>
   )
 }
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticProps: GetStaticProps<HomeProps> = async ({
+  preview = false, 
+  previewData = {},
+}) => {
   const prismic = getPrismicClient();
   const postsResponse = await prismic.query([
     Prismic.Predicates.at('document.type', 'posts')
@@ -120,6 +129,8 @@ export const getStaticProps: GetStaticProps = async () => {
     {
       fetch: ['posts.title', "posts.subtitle", "posts.author"],
       pageSize: 5,
+      orderings: '[document.first_publication_date desc]',
+      ref: previewData?.ref ?? null,
     }
   );
 
@@ -143,7 +154,8 @@ export const getStaticProps: GetStaticProps = async () => {
       postsPagination: {
         next_page: postsResponse.next_page, 
         results
-      }
+      },
+      preview,
     }
   }
 
