@@ -31,9 +31,7 @@ Para te ajudar nesse desafio, criamos para você esse modelo que você deve util
 
 Começando pelo tema do projeto: criando um projeto do zero. Como isso é inviável por causa dos testes e algumas verificações que precisamos que vocês sigam, criamos um projeto com a menor quantidade de código possível. A idéia é se assemelhar a um projeto recém criado com a CLI do Next.js.
 
-O template está disponível na seguinte URL:
-
-[Template](https://github.com/rocketseat-education/ignite-template-reactjs-criando-um-projeto-do-zero)
+O template está disponível na seguinte URL: [Template](https://github.com/rocketseat-education/ignite-template-reactjs-criando-um-projeto-do-zero)
 
 ## O que devo editar na aplicação?
 
@@ -55,8 +53,6 @@ Nesse arquivo você deve configurar a importação da fonte `Inter` do Google Fo
 
 ### pages/index.tsx
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/a266fffe-64cd-4b29-8e16-5ca0a36fb018/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/a266fffe-64cd-4b29-8e16-5ca0a36fb018/Untitled.png)
-
 Nesse arquivo você deve renderizar todos os posts da paginação e exibir o botão `Carregar mais posts` caso existam mais posts a ser carregados (ou seja, o valor `next_page` retornado pela Prismic não pode ser `null`). Caso contrário, o botão não deve ser renderizado.
 
 A logo `spacetraveling` deve ser exportada do Figma e salva na pasta `public` na raiz do seu projeto para a correta utilização. Além disso, a logo deve ter o `alt` com o valor `logo` para que o teste possa encontrá-la corretamente.
@@ -70,8 +66,6 @@ Por fim, a sua página deve ser gerada estaticamente. Isso significa que você d
 Nesse arquivo você deve implementar toda a estilização da página principal.
 
 ### pages/post/[slug].tsx
-
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/963ff31f-5679-4a7d-a81c-e5de7f7b10e7/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/963ff31f-5679-4a7d-a81c-e5de7f7b10e7/Untitled.png)
 
 Nesse arquivo você deve renderizar toda a informação do post e o component `Header`.
 
@@ -98,8 +92,6 @@ Caso tenha dúvidas em relação ao fallback, dê uma olhada aqui:
 Nesse arquivo você deve implementar toda a estilização da página de post.
 
 ### components/Header/index.tsx
-
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/eca943bc-37c8-4f37-8d5f-1d91a53648ee/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/eca943bc-37c8-4f37-8d5f-1d91a53648ee/Untitled.png)
 
 Nesse arquivo você deve renderizar a logo `spacetraveling`. 
 
@@ -130,12 +122,6 @@ Para esse desafio, temos os seguintes testes:
 [Testes pages/Home/index.tsx](https://www.notion.so/Testes-pages-Home-index-tsx-92311ae2694e48eaa8d9addda3afaed9)
 
 [Testes pages/post/[slug].tsx](https://www.notion.so/Testes-pages-post-slug-tsx-4fd06de1728c4abda14d092da382c1df)
-
-## Como deve ficar a aplicação ao final?
-
-Está com dúvidas (ou curioso 👀) para ver como deve ficar a aplicação ao final do desafio? Deixamos abaixo um vídeo mostrando as principais funcionalidades que você deve implementar para te ajudar (ou matar sua curiosidade 👀).
-
-[https://s3-us-west-2.amazonaws.com/secure.notion-static.com/72408e01-e482-42a7-b137-adfae908b00a/final.mp4](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/72408e01-e482-42a7-b137-adfae908b00a/final.mp4)
 
 
 ---
